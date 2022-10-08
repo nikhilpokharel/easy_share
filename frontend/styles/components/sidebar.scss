@@ -1,0 +1,50 @@
+._sidebar_track {
+    width: 300px;
+    @media(max-width: 772px){
+        width: 200px;
+    }
+    ._sidebar {
+        width: 100%;
+        position: sticky;
+        top:0;
+        left:0;
+        overflow-y: scroll;
+        @media(max-width: 772px){
+            overflow-x: scroll;
+        }
+        height: 100vh;
+        padding: 10px;
+        background: $sidebar_bg;
+        &::-webkit-scrollbar {
+            width: 8px;
+        }
+        &::-webkit-scrollbar-track {
+            background: $white_light;
+        }
+        &::-webkit-scrollbar-thumb {
+            background: darken($white_light, 30%);
+            border-radius: 10px;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background: darken($white_light, 40%);
+        }
+        ._navlink {
+            margin-bottom: 8px;
+            ._link {
+                display: inline-block;
+                width: 100%;
+                padding: 10px 16px;
+                cursor: pointer;
+                border-radius: 5px;
+                &:hover,
+                &._active {
+                    background: $topbar_bg;
+                    color: $white;
+                }
+                text-decoration: none;
+                color: $white_light;
+                font-weight: bold;
+            }
+        }
+    }
+}

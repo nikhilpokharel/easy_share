@@ -1,0 +1,8 @@
+@import './var.scss';
+@import './components/sidebar.scss';
+@import './components/topnav.scss';
+
+body{
+    overflow-x: hidden;
+    box-sizing: border-box;
+}

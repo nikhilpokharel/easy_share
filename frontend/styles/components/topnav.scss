@@ -1,0 +1,30 @@
+._sidenav_brand {
+  display: flex;
+  align-items: center;
+  ._brand_name {
+    display: inline-block;
+    color: $white;
+    margin-left: 2rem;
+    transform: translateY(25%);
+  }
+}
+._dropdown_menu {
+  padding: 1rem;
+  ._dropdown_list {
+    display: flex;
+    width: 200px;
+    text-overflow: hidden;
+    align-items: center;
+    margin-top: 10px;
+    padding: 8px;
+
+    &.active,
+    &:focus {
+      background: $sidebar_bg;
+    }
+    span {
+      margin-left: 8px;
+      font-size: 14px;
+    }
+  }
+}

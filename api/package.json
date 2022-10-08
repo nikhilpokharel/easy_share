@@ -1,0 +1,40 @@
+{
+  "name": "share_bot",
+  "version": "1.0.0",
+  "description": "share bot",
+  "main": "server.js",
+  "engines": {
+    "node": "16.14.0",
+    "npm": "8.5.3"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Nikhil Pokharel",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-validator": "^6.14.2",
+    "jsonwebtoken": "^8.5.1",
+    "module-alias": "^2.2.2",
+    "mongoose": "^6.6.3",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.2",
+    "nodemon": "^2.0.20"
+  },
+  "_moduleAliases": {
+    "@src": "./src",
+    "@controller": "./src/controllers",
+    "@asyncWrapper": "./src/services/asyncWrapper.js",
+    "@asyncAuthWrapper": "./src/services/asyncAuthWrapper.js",
+    "@routes": "./src/routes"
+  }
+}

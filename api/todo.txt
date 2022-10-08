@@ -1,0 +1,3 @@
+# AUTH
+    payload: clientId,username,password
+    url: https://webbackend.cdsc.com.np/api/meroShare/auth/
