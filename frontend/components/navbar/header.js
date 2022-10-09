@@ -5,7 +5,7 @@ import userServices from "../../services/userService";
 import Loader from "../../utils/loader";
 import router from "next/router";
 import { RiMenu3Line as MenuIcon } from "react-icons/ri";
-import api from "axios";
+import handleLogout from "../../helper/handleLogout";
 import {
   Navbar,
   Nav,
@@ -20,16 +20,6 @@ export default function Header() {
   const showMenu = useSelector((state) => state.toggle_menu.show);
   const { data: activeAccount } = useSelector((state) => state.accountSelected);
   const [logoutLoad, setLogoutLoad] = useState(false);
-
-  //active account selection
-  const selectActiveAccount = () => {
-    if (userAccount && userAccount.length > 0) {
-      if (!activeAccount) {
-        let selectedAccount = userAccount[0]._id;
-        userServices.saveSelectedAccount(dispatch, selectedAccount);
-      }
-    }
-  };
 
   const { loading: loading_user, data: user } = useSelector(
     (state) => state.user
@@ -47,26 +37,23 @@ export default function Header() {
     userServices.getUserDetails(dispatch);
   };
 
-  const handleLogout = async () => {
-    setLogoutLoad(true);
-    localStorage.removeItem("auth_user");
-    await api
-      .post("/api/logout")
-      .then((res) => {
-        router.replace("/login");
-        setLogoutLoad(false);
-      })
-      .catch((err) => {
-        setLogoutLoad(false);
-        console.log(err);
-      });
+  //active account selection
+  const findOrCreateNewActiveAccount = () => {
+    userServices.getSelectedAccount(dispatch);
+    if (!loading_account) {
+      if (userAccount && userAccount.length > 0) {
+        if (!activeAccount) {
+          let selectedAccount = userAccount[0]._id;
+          userServices.saveSelectedAccount(dispatch, selectedAccount);
+        }
+      }
+    }
   };
 
   useEffect(() => {
     userServices.getProfile(dispatch);
     userServices.getAccount(dispatch);
-    userServices.getSelectedAccount(dispatch);
-    selectActiveAccount();
+    findOrCreateNewActiveAccount();
   }, []);
 
   return (
@@ -136,17 +123,23 @@ export default function Header() {
                   </Dropdown.Item>
                 ))
               ) : (
-                <Dropdown.Item
-                  onClick={() => {
-                    window.location.href = "/account";
-                  }}
-                  className={`_dropdown_list`}
-                >
-                  <small>Not found</small>
-                </Dropdown.Item>
+                <>
+                  {!loading_account && (
+                    <Dropdown.Item
+                      onClick={() => {
+                        router.replace("/account");
+                      }}
+                      className={`_dropdown_list`}
+                    >
+                      <small>Not found</small>
+                    </Dropdown.Item>
+                  )}
+                </>
               )}
               <Dropdown.Item
-                onClick={handleLogout}
+                onClick={() => {
+                  handleLogout(setLogoutLoad);
+                }}
                 style={{
                   textAlign: "center",
                   display: "inline-block",

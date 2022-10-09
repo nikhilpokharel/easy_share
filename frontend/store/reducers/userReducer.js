@@ -33,6 +33,11 @@ export const userAccount = createSlice({
         : null;
       state.error = action.payload?.error || false;
       state.errorMessage = action.payload?.errorMessage || "";
+      const getSelected = localStorage.getItem("selected_account");
+      if (!getSelected) {
+        let currentAccounts = state.data;
+        localStorage.setItem("selected_account", currentAccounts[0]._id);
+      }
     },
     updateAccount: (state, action) => {
       let accounts = [...state.data];

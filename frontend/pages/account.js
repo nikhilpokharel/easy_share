@@ -49,9 +49,12 @@ export default function Account() {
 
   const handleAccount = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       if (update) {
         const updateReq = await userServices.updateAccount(dispatch, formData);
+        userServices.getSelectedAccount(dispatch);
+        setLoading(false);
         if (updateReq?.ok) {
           setSuccess({ show: true, msg: updateReq?.message });
           setTimeout(() => {
@@ -60,6 +63,8 @@ export default function Account() {
         }
       } else {
         const createReq = await userServices.createAccount(dispatch, formData);
+        userServices.getSelectedAccount(dispatch);
+        setLoading(false);
         if (createReq?.ok) {
           setSuccess({ show: true, msg: createReq?.message });
           emptyForm(formData, setFormData);
@@ -249,9 +254,13 @@ export default function Account() {
                 </ListGroupItem>
               ))
             ) : (
-              <ListGroupItem className='border-0 text-secondary'>
-                No account created yet !
-              </ListGroupItem>
+              <>
+                {!loading_account && (
+                  <ListGroupItem className='border-0 text-secondary'>
+                    No account created yet !
+                  </ListGroupItem>
+                )}
+              </>
             )}
           </ListGroup>
         </Col>
