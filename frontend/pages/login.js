@@ -110,7 +110,7 @@ export default function Login() {
           <FormGroup className='text-center my-2'>
             <Link href='/register'>
               <a className='text-dark'>
-                <FormText>Don't have account</FormText>
+                <FormText>Dont have account</FormText>
               </a>
             </Link>
           </FormGroup>

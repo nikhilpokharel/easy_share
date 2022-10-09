@@ -1,6 +1,6 @@
 import cookie from "cookie";
 
-export default (req, res) => {
+const logout = (req, res) => {
   const date = new Date(0);
   res.setHeader(
     "Set-Cookie",
@@ -16,3 +16,4 @@ export default (req, res) => {
   res.statusCode = 200;
   res.json({ success: true });
 };
+export default logout;

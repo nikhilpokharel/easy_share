@@ -1,6 +1,6 @@
 import cookie from "cookie";
 
-export default (req, res) => {
+const login = (req, res) => {
   const date = new Date();
   date.setFullYear(date.getFullYear() + 1);
   res.setHeader(
@@ -17,3 +17,4 @@ export default (req, res) => {
   res.statusCode = 200;
   res.json({ success: true });
 };
+export default login;

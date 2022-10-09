@@ -92,6 +92,7 @@ export default function Header() {
                 <Image
                   width={40}
                   roundedCircle
+                  alt={"active user avatar"}
                   src={`https://ui-avatars.com/api/?name=${
                     userAccount.find(
                       (account) => account?._id?.toString() == activeAccount
@@ -102,6 +103,7 @@ export default function Header() {
                 <Image
                   width={40}
                   roundedCircle
+                  alt='logged user avatar'
                   src={`https://ui-avatars.com/api/?name=${user.fullName}`}
                 />
               )}
@@ -127,6 +129,7 @@ export default function Header() {
                     <Image
                       width={40}
                       roundedCircle
+                      alt='users avatar'
                       src={`https://ui-avatars.com/api/?name=${account.accountUser}`}
                     />
                     <span>{account?.accountUser?.substring(0, 20)}</span>
